@@ -3,7 +3,7 @@
   "database": {
     "client": "sqlite3",
     "connection": {
-      "filename": "./content/data/blog.dev.sqlite3"
+      "filename": "./blog.dev.sqlite3"
     },
     "useNullAsDefault": true
   },

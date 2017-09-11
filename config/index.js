@@ -13,8 +13,7 @@ nconf.file('env-config', path.join(__dirname, './env' ,'./config.' + env + '.jso
 
 nconf.makePathsAbsolute = utils.makePathsAbsolute.bind(nconf);
 
-nconf.makePathsAbsolute(nconf.get('paths'), 'paths');
+nconf.makePathsAbsolute(nconf.get('paths'), 'paths', env);
 
 
-console.log(nconf.get('paths'));
 module.exports = nconf;
