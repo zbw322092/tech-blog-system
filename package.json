@@ -10,6 +10,7 @@
     "bookshelf": "^0.10.4",
     "express": "^4.15.4",
     "knex": "^0.13.0",
+    "knex-migrator": "^2.1.6",
     "lodash": "^4.17.4",
     "nconf": "^0.8.4",
     "sqlite3": "^3.1.10"

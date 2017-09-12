@@ -21,4 +21,12 @@ exports.makePathsAbsolute = function makePathsAbsolute(obj, parent, env) {
     let filename = self.get('database:connection:filename');
     self.set('database:connection:filename', path.normalize(path.join(contentPath, './data', filename)));
   }
-}
+};
+
+exports.getVersion = function getVersion () {
+  const { version = "" } = require('../package.json');
+  return {
+    fullVersion: version,
+    safeVersion: version.match(/^(\d+\.)?(\d+)/)[0]
+  }
+};
