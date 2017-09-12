@@ -17,7 +17,8 @@ https://stackoverflow.com/a/30163868 <br>
 
 [2] 
 Node.js: Difference between req.query[] and req.params
-https://stackoverflow.com/questions/14417592/node-js-difference-between-req-query-and-req-params
+https://stackoverflow.com/questions/14417592/node-js-difference-between-req-query-and-req-params <br>
 
-
+[3] Call a “local” function within module.exports from another function in module.exports?
+https://stackoverflow.com/questions/10462223/call-a-local-function-within-module-exports-from-another-function-in-module-ex
   

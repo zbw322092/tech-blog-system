@@ -1,7 +1,11 @@
-const bookshelf = require('./bookshelf.js');
+const bookshelf = require('bookshelf');
+const connection = require('./connection.js');
 
-const Blog = bookshelf.Model.extend({
+// create a bookshelf instance
+const bTech = bookshelf(connection);
+
+bTech.Model = bTech.Model.extend({
   tableName: 'blog'
 });
 
-module.exports = Blog;
+module.exports = bTech;

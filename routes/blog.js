@@ -1,16 +1,16 @@
 const router = require('express').Router();
-const Blog = require('../models/blog.js');
+const bTech = require('../models/blog.js');
 
 router.route('/')
   .get((req, res) => {
-    Blog
+    bTech
       .fetchAll()
       .then((result) => {
         res.json({ result });
       });
   })
   .post((req, res) => {
-    new Blog({
+    new bTech({
       firstName: req.body.firstName || '',
       lastName: req.body.lastName || '',
       emailAddress: req.body.emailAddress || ''
@@ -23,7 +23,7 @@ router.route('/')
 
 router.route('/:id')
   .put((req, res) => {
-    Blog
+    bTech
       .where('id', req.params.id)
       .fetch()
       .then((result) => {
@@ -38,7 +38,7 @@ router.route('/:id')
       });
   })
   .delete((req, res) => {
-    Blog
+    bTech
       .where('id', req.params.id)
       .destroy()
       .then((model) => {
