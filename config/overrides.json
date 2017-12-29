@@ -1,6 +1,0 @@
-{
-  "paths": {
-    "appRoot": ".",
-    "migrationPath": "./data/migrations"
-  }
-}
