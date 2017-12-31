@@ -7,6 +7,7 @@
   "author": "Bowen Zhong <bz4e14@soton.ac.uk>",
   "license": "MIT",
   "dependencies": {
+    "debug": "^3.1.0",
     "express": "^4.16.2",
     "nconf": "^0.10.0"
   }
