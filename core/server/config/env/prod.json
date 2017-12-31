@@ -1,0 +1,5 @@
+{
+  "prod": "it is production configurations",
+  "common": "common from prod",
+  "boolean": false
+}

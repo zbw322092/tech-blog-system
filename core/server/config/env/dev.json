@@ -1,0 +1,5 @@
+{
+  "dev": "it is development configurations",
+  "common": "common from dev",
+  "boolean": true
+}
