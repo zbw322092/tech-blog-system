@@ -23,6 +23,8 @@ nconf
 
 nconf.file('env', path.join(__dirname, `./env/${env}.json`) );
 
+nconf.set('env', env);
+
 nconf.defaults(defaultsConfig);
 
 module.exports = nconf;
