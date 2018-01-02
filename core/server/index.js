@@ -1,3 +1,4 @@
+const debug = require('debug')('boot:init');
 const AppServer = require('./appServer');
 const parentApp = require('./web/parentApp')();
 

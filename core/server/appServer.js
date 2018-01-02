@@ -6,7 +6,7 @@ const _ = require('lodash');
 const fs = require('fs');
 
 class AppServer {
-  constructor (rootApp) {
+  constructor(rootApp) {
     this.rootApp = rootApp;
     this.httpServer = null;
     this.connections = {};
@@ -29,7 +29,7 @@ class AppServer {
       let serverConfig = config.get('server') || {};
       if (serverConfig.hasOwnProperty('socket')) {
         socketConfig = config.get('server:socket');
-        
+
         if (_.isString(socketConfig)) {
           socketValues.path = socketConfig;
         } else if (_.isObject(socketConfig)) {
@@ -40,7 +40,7 @@ class AppServer {
         // Make sure the socket is gone before trying to create another
         try {
           fs.unlinkSync(socketValues.path);
-        } catch(e) {}
+        } catch (e) { }
 
         this.httpServer = rootApp.listen(socketValues.path);
         fs.chmod(socketValues.path, socketValues.permissions);
@@ -64,12 +64,61 @@ class AppServer {
         reject(appError);
       });
 
+      this.httpServer.on('connection', (socket) => {
+        console.log(`get a connection`);
+        socket.setKeepAlive(true, 15000);
+      });
+
       this.httpServer.on('listening', () => {
         debug('...Server Started');
         reslove(this);
       });
+
+      this.httpServer.on('connection', this.connection.bind(this));
     });
 
+  }
+
+  stop() {
+    return new Promise((resolve) => {
+      if (this.httpServer === null) {
+        resolve(this);
+      } else {
+        this.httpServer.close(() => {
+          console.log('server closed');
+          resolve(this);
+        });
+
+        this.closeConnections();
+      }
+    });
+  }
+
+  connection(socket) {
+    this.connectionId += 1;
+    socket._mySocketId = this.connectionId;
+    this.connections[socket._mySocketId] = socket; // register sockets
+
+    // 'close' event is emitted once the socket is fully closed.
+    socket.on('close', () => {
+      // unregister socket
+      delete this.connections[this._mySocketId];
+    });
+  }
+
+  /**
+   * ### Close Connections
+   * Most browsers keep a persistent connection open to the server, which prevents the close callback of
+   * httpServer from returning. We need to destroy all connections manually.
+  */
+  closeConnections() {
+    Object.keys(this.connections).forEach((socketId) => {
+      let socket = this.connections[socketId];
+
+      if (socket) {
+        socket.destroy();
+      }
+    });
   }
 
 
