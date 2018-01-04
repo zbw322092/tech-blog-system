@@ -94,6 +94,13 @@ class AppServer {
     });
   }
 
+  restart() {
+    return this.stop()
+      .then((server) => {
+        server.start();
+      });
+  }
+
   connection(socket) {
     this.connectionId += 1;
     socket._mySocketId = this.connectionId;
