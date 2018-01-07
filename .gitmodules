@@ -1,0 +1,3 @@
+[submodule "core/server/lib"]
+	path = core/server/lib
+	url = https://github.com/zbw322092/server-lib.git
