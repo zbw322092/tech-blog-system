@@ -22,6 +22,7 @@ nconf
   .argv();
 
 nconf.file('env', path.join(__dirname, `./env/${env}.json`) );
+nconf.file('env_private', path.join(__dirname, `./private/${env}.json`) );
 
 nconf.set('env', env);
 
